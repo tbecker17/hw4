@@ -1,11 +1,27 @@
-<h1>Places</h1>
-
-<ul>
-  <% for place in @places %>
-    <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
-  <% end %>
-</ul>
-
-<p>
-  <a href="/places/new">New place</a>
-</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Places</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Places</a>
+    <ul class="navbar-nav ml-auto">
+      <% if @current_user %>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/new">Signup</a>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</body>
+</html>
