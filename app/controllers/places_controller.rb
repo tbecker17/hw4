@@ -4,10 +4,9 @@ class PlacesController < ApplicationController
   end
 
   def new
-    # Render new place form
+    @place = Place.new
   end
 
- 	
   def create
     place = Place.new(place_params)
     place.user = @current_user
