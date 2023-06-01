@@ -1,6 +1,12 @@
 class PlacesController < ApplicationController
+
   def index
     @places = Place.all
+  end
+
+  def show
+    @place = Place.find(params[:id])
+    @posts = @place.posts.where(user_id: current_user.id)
   end
 
   def new
@@ -8,18 +14,13 @@ class PlacesController < ApplicationController
   end
 
   def create
-    place = Place.new(place_params)
-    place.user = @current_user
-    if place.save
-      redirect_to "/places"
+    @place = current_user.places.build(place_params)
+    if @place.save
+      redirect_to @place, notice: "Place created successfully."
     else
       render :new
     end
-
-    def show
-      @place = Place.find(params[:id])
-    end
-end
+  end
 
   private
 
@@ -27,4 +28,3 @@ end
     params.require(:place).permit(:name, :description)
   end
 end
-
