@@ -1,0 +1,9 @@
+<% @place.posts.each do |post| %>
+  <div>
+    <h3><%= post.title %></h3>
+    <p><%= post.description %></p>
+  </div>
+<% end %>
+
+<%= link_to 'New Post', new_post_path %>
+<%= link_to 'Back to All Places', places_path %>

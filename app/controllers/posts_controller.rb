@@ -9,16 +9,28 @@ class PostsController < ApplicationController
 
   def create
     if @current_user
-      @post = Post.new
-      @post["description"] = params["post"]["description"]
-      @post.uploaded_image.attach(params["post"]["uploaded_image"])
-      @post["user_id"] = @current_user["id"]
-      @post.save
+      @post = Post.new(post_params)
+      @post.user = @current_user
+      if @post.save
+        flash[:notice] = 'Post was successfully created.'
+        redirect_to @post
+      else
+        render :new
+      end
     else
-      flash["notice"] = "Login first."
+      flash[:notice] = 'You must be logged in to create a post.'
+      redirect_to login_path
     end
-    redirect_to "/posts"
   end
+  private
+def post_params
+  params.require(:post).permit(:title, :description, :place_id) 
+end
+def show
+  @post = Post.find(params[:id])
+  @place = @post.place
+end
+
   before_action :allow_cors
    def allow_cors
      response.headers['Access-Control-Allow-Origin'] = '*'
