@@ -7,6 +7,7 @@ class PlacesController < ApplicationController
     # Render new place form
   end
 
+ 	
   def create
     place = Place.new(place_params)
     place.user = @current_user
@@ -15,7 +16,7 @@ class PlacesController < ApplicationController
     else
       render :new
     end
-  end
+end
 
   private
 
@@ -23,3 +24,4 @@ class PlacesController < ApplicationController
     params.require(:place).permit(:name, :description)
   end
 end
+
