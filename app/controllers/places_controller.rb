@@ -14,12 +14,10 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = current_user.places.build(place_params)
-    if @place.save
-      redirect_to @place, notice: "Place created successfully."
-    else
-      render :new
-    end
+    @place = Place.new
+    @place["name"] = params["place"]["name"]
+    @place.save
+    redirect_to "/places"
   end
 
   private
