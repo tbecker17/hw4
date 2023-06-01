@@ -3,8 +3,8 @@
 <% if @current_user %>
   <%= form_with :model => @post do |form| %>
     <div class="mb-3">
-      <%= form.label "Place", class: "form-label" %>
-      <%= form.text_field "Place", class: "form-control" %>
+      <%= form.label "Name", class: "form-label" %>
+      <%= form.text_field "Name", class: "form-control" %>
     </div>
 
     <%= form.submit "Create Place", class: "btn btn-primary" %>
