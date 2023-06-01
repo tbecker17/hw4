@@ -6,19 +6,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+  <div class="text-front">
+    <a href="/places/new/" class="btn btn-success">New Place</a>
+  </div>
 
-      <% if @current_user %>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-      <% else %>
-       
-      <% end %>
-    </ul>
-  </nav>
-  
-      <div class="text-front">
-        <a href="/places/new/" class="btn btn-success">New Place</a>
-      </div>
+  <h2>Places</h2>
+  <ul>
+    <% @places.each do |place| %>
+      <li>
+        <a href="<%= place_path(place) %>"><%= place.name %></a>
+      </li>
+    <% end %>
+  </ul>
 </body>
 </html>
